@@ -1,0 +1,6 @@
+Report Oct-2020
+
+Feasible implementations of the security modules were checked. The plan is as follows-
+1. Designing a simple RISC processor in Verilog. Planning to make a custom ISA which supports ALU ops, Jumps, Branches and Load-Stores. Unpipelined and pipelined architectures 
+are added as images. To be finished by January 2021. 
+2. Implement a cryptographic algorithm in hardware. As of now, we are looking at AES. Time: January '21 onwards.
