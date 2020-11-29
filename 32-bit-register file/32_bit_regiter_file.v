@@ -10,7 +10,7 @@ module reg32file
  output reg [31:0] r_data2,
 );
 
- reg [31:0] reg_file;
+ reg [31:0] reg_file [0:31];
 
 if (reg_write == 1)
   begin
