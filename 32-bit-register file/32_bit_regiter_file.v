@@ -10,16 +10,18 @@ module reg32file
 
  reg [31:0] reg_file [0:31];
 
+ 
  assign r_data1 = reg_file[r_reg1];
  assign r_data2 = reg_file[r_reg2];
 
+
  always @(posedge clk)
+ begin
+	if(reg_write)
 	begin
-	  if(reg_write)
-	  begin
 		reg_file[w_reg] <= w_data;
-	  end
 	end
+ end
 endmodule
 
 module reg32file_tb;
