@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-// A register bank with 32 $REGSIZE registers 
+// A register bank with 32, 32-bit registers 
 
 module regfile(
     input clk,
