@@ -8,19 +8,19 @@ module ALU(
  always @(posedge clk)
  begin
 	case(ALUFN)
-	 6'b000011 : 	begin
+	 6'b100100 : 	begin
 				if(A == B)
 					Y <= 1;
 				else
 					Y <= 0;
 			end
-	 6'b000101 : 	begin
+	 6'b100101 : 	begin
 				if(A < B)
 					Y <= 1;
 				else
 					Y <= 0;
 			end
-	 6'b000111 : 	begin
+	 6'b100110 : 	begin
 				if(A == B)
 					Y <= 1;
 				else if(A < B)
@@ -28,16 +28,16 @@ module ALU(
 				else
 					Y <= 0;
 			end
-	 6'b010000 : Y <= A + B;
-	 6'b010001 : Y <= A - B;
+	 6'b100000 : Y <= A + B;
+	 6'b100001 : Y <= A - B;
 	 6'b101000 : Y <= A & B;
-	 6'b101110 : Y <= A | B;
-	 6'b100110 : Y <= A ^ B;
-	 6'b101001 : Y <= ~(A ^ B);
-	 6'b101010 : Y <= A;
-	 6'b110000 : Y <= A << B;
-	 6'b110001 : Y <= A >> B;
-	 6'b110011 : Y <= A >>> B;
+	 6'b101001 : Y <= A | B;
+	 6'b101010 : Y <= A ^ B;
+	 6'b101011 : Y <= ~(A ^ B);
+	 6'b111111 : Y <= A;
+	 6'b101100 : Y <= A << B;
+	 6'b101101 : Y <= A >> B;
+	 6'b101110 : Y <= A >>> B;
 	endcase
  end
 

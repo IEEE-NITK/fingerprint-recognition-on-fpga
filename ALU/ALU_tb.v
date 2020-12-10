@@ -14,7 +14,7 @@ ALU x(	.clk(clk),
  initial
  begin
 	clk <= 0;
-	#5 ALUFN = 6'b000011;
+	#5 ALUFN = 6'b100100;
 	A = 15;
 	B = 13;
 	
@@ -25,7 +25,7 @@ ALU x(	.clk(clk),
 	B = 13;
 	
 	$monitor("A= %d; B= %d; Y= %d;",A,B,Y);
-	#10 ALUFN = 6'b000101;
+	#10 ALUFN = 6'b100101;
 	A = 15;
 	B = 13;
 	
@@ -42,7 +42,7 @@ ALU x(	.clk(clk),
 	B = 15;
 	
 	$monitor("A= %d; B= %d; Y= %d;",A,B,Y);
-	#10 ALUFN = 6'b000111;
+	#10 ALUFN = 6'b100110;
 	A = 15;
 	B = 13;
 	
@@ -59,7 +59,7 @@ ALU x(	.clk(clk),
 	B = 15;
 	
 	$monitor("A= %d; B= %d; Y= %d;",A,B,Y);
-	#10 ALUFN = 6'b010000;
+	#10 ALUFN = 6'b100000;
 	A = 15;
 	B = 13;
 	
@@ -71,7 +71,7 @@ ALU x(	.clk(clk),
 	
 	$monitor("A= %d; B= %d; Y= %d;",A,B,Y);
 	
-	#10 ALUFN = 6'b010001;
+	#10 ALUFN = 6'b100001;
 	A = 15;
 	B = 13;
 	
@@ -93,12 +93,12 @@ ALU x(	.clk(clk),
 	B = 13;
 	
 	$monitor("AND A= %d; B= %d; Y= %d;",A,B,Y);
-	#10 ALUFN = 6'b101110;
+	#10 ALUFN = 6'b101001;
 	A = 15;
 	B = 13;
 	
 	$monitor("OR A= %d; B= %d; Y= %d;",A,B,Y);
-	#10 ALUFN = 6'b100110;
+	#10 ALUFN = 6'b101010;
 	A = 15;
 	B = 13;
 	
@@ -108,17 +108,17 @@ ALU x(	.clk(clk),
 	B = 13;
 	
 	$monitor("XNOR A= %d; B= %d; Y= %d;",A,B,Y);
-	#10 ALUFN = 6'b110000;
+	#10 ALUFN = 6'b101100;
 	A = 15;
 	B = 4;
 	
 	$monitor("SHL A= %d; B= %d; Y= %d;",A,B,Y);
-	#10 ALUFN = 6'b110001;
+	#10 ALUFN = 6'b101101;
 	A = 15;
 	B = 4;
 	
 	$monitor("SHR A= %d; B= %d; Y= %d;",A,B,Y);
-	#10 ALUFN = 6'b110011;
+	#10 ALUFN = 6'b101110;
 	A = -16;
 	B = 4;
 	
