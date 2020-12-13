@@ -1,11 +1,10 @@
 module ALU(
-	input clk,
 	input [5:0] ALUFN,
 	input signed [31:0] A,
 	input signed [31:0] B,
 	output reg [31:0] Y);
 
- always @(posedge clk)
+ always @(ALUFN,A,B)
  begin
 	case(ALUFN)
 	 6'b100100 : 	begin

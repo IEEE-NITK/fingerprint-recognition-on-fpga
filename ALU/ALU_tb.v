@@ -1,19 +1,15 @@
 module ALU_tb;
-reg clk;
 reg [5:0] ALUFN;
 reg [31:0] A,B;
 wire [31:0] Y;
 
-ALU x(	.clk(clk),
-	.ALUFN(ALUFN),
+ALU x(	.ALUFN(ALUFN),
 	.A(A),
 	.B(B),
 	.Y(Y));
 
- always #5 clk = ~clk;
  initial
  begin
-	clk <= 0;
 	#5 ALUFN = 6'b100100;
 	A = 15;
 	B = 13;
