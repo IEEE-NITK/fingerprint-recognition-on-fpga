@@ -1,6 +1,5 @@
 module CU (
 	input [31:0] instruction,
-	input clk,
 	output reg [5:0] ALUFN,
 	output reg ASEL,
 	output reg BSEL,
@@ -12,7 +11,7 @@ module CU (
 	output reg [1:0] WDSEL,
 	output reg WERF);
 
-always @(posedge clk)
+always @(instruction)
  begin
 	ALUFN <= instruction[31:26];
 	case(ALUFN)
