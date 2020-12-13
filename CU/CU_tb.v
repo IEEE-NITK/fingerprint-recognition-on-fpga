@@ -1,7 +1,6 @@
 `timescale 1ns/1ns
 
 module CU_tb;
-reg clk;
 reg [31:0] instruction;
 wire [5:0] ALUFN;
 wire ASEL;
@@ -14,8 +13,7 @@ wire WASEL;
 wire [1:0] WDSEL;
 wire WERF;
 
-CU x(.clk(clk),
-    .ALUFN(ALUFN),
+CU x(.ALUFN(ALUFN),
     .instruction(instruction),
     .ASEL(ASEL),
     .BSEL(BSEL),
@@ -28,15 +26,10 @@ CU x(.clk(clk),
     .WERF(WERF)
     );
 
-always #5 clk=~clk;
 initial
 begin
-    clk <=0;
     #10 instruction[31:30] =2'b10;
-    
-    #(15)
-    begin
-		@(negedge clk)
+    #(11)
     if(
             ASEL === 0 &&
 			BSEL === 0 &&
@@ -51,12 +44,9 @@ begin
         $display("Case 1: PASS ");
     else
         $display("Case 1: FAIL ");
-        end
     
     #10 instruction[31:30] =2'b11;
-    #(15)
-    begin
-		@(negedge clk)
+
     if(
             ASEL === 0 &&
 			BSEL === 1 &&
@@ -71,12 +61,9 @@ begin
         $display("Case 2: PASS ");
     else
         $display("Case 2: FAIL ");
-        end
 
     #10  instruction[31:26] =32'b011000;
-    #(15)
-    begin
-		@(negedge clk)
+
     if(
             ALUFN === 6'b100000 &&
             ASEL === 0 &&
@@ -93,7 +80,5 @@ begin
     else
         $display("Case 3: FAIL ");
         end
-
-end
 
 endmodule
