@@ -31,14 +31,14 @@ begin
     #10 instruction[31:30] =2'b10;
     if(
             ASEL == 0 &&
-			BSEL == 0 &&
+			BSEL === 0 &&
 			MOE === 1'bx &&
-			MWR == 0 &&
-			PCSEL == 3'b000 &&
-			RA2SEL == 0 &&
-			WASEL == 0 &&
-			WDSEL == 2'b01 &&
-			WERF == 1)
+			MWR === 0 &&
+			PCSEL === 3'b000 &&
+			RA2SEL === 0 &&
+			WASEL === 0 &&
+			WDSEL === 2'b01 &&
+			WERF === 1)
 
         $display("Case 1: PASS ");
     else
@@ -48,14 +48,14 @@ begin
 
     if(
             ASEL === 0 &&
-			BSEL == 1 &&
+			BSEL === 1 &&
 			MOE === 1'bx &&
-			MWR == 0 &&
-			PCSEL == 3'b000 &&
+			MWR === 0 &&
+			PCSEL === 3'b000 &&
 			RA2SEL ===1'bx &&
-			WASEL == 0 &&
-			WDSEL == 2'b01 &&
-			WERF == 1 )
+			WASEL === 0 &&
+			WDSEL === 2'b01 &&
+			WERF === 1 )
 
         $display("Case 2: PASS ");
     else
@@ -66,14 +66,14 @@ begin
     if(
             ALUFN == 6'b100000 &&
             ASEL == 0 &&
-			BSEL == 1 &&
-			MOE == 1 &&
-			MWR == 0 &&
-			PCSEL == 3'b000 &&
+			BSEL === 1 &&
+			MOE === 1 &&
+			MWR === 0 &&
+			PCSEL === 3'b000 &&
 			RA2SEL ===1'bx &&
-			WASEL == 0 &&
-			WDSEL == 2'b10 &&
-			WERF == 1 )
+			WASEL === 0 &&
+			WDSEL === 2'b10 &&
+			WERF === 1 )
 
         $display("Case 3: PASS ");
     else

@@ -64,16 +64,16 @@ begin
     #10  instruction[31:26] =32'b011000;
 
     if(
-            ALUFN === 6'b100000 &&
-            ASEL === 0 &&
-			BSEL === 1 &&
-			MOE === 1 &&
-			MWR === 0 &&
-			PCSEL === 3'b000 &&
+            ALUFN == 6'b100000 &&
+            ASEL == 0 &&
+			BSEL == 1 &&
+			MOE == 1 &&
+			MWR == 0 &&
+			PCSEL == 3'b000 &&
 			RA2SEL ===1'bx &&
-			WASEL === 0 &&
-			WDSEL === 2'b10 &&
-			WERF === 1 )
+			WASEL == 0 &&
+			WDSEL == 2'b10 &&
+			WERF == 1 )
 
         $display("Case 3: PASS ");
     else
