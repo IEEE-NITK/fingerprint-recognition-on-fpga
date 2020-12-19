@@ -252,5 +252,5 @@ begin
         $display("Case 10: PASS ");
     else
         $display("Case 10(RESET): FAIL ");
-end     
+end;     
 endmodule
