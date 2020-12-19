@@ -39,13 +39,13 @@ initial
 begin
 
 //Instruction Testing
-
+    Z=1;
     //Testing OP
     instruction[31:30] = 2'b10;
     #(period)
     
-    if(     ALUFN == instruction[31:26] &&
-            ASEL == 0 &&
+    if(     ALUFN === instruction[31:26] &&
+            ASEL === 0 &&
 			BSEL === 0 &&
 			MOE === 1'bx &&
 			MWR === 0 &&
@@ -63,7 +63,7 @@ begin
 	instruction[31:30] = 2'b11;
 	#(period)
 
-    if(     ALUFN == instruction[31:26] &&
+    if(     ALUFN === instruction[31:26] &&
             ASEL === 0 &&
 			BSEL === 1 &&
 			MOE === 1'bx &&
@@ -83,8 +83,8 @@ begin
 	#(period)
 
     if(
-            ALUFN == 6'b100000 &&
-            ASEL == 0 &&
+            ALUFN === 6'b100000 &&
+            ASEL === 0 &&
 			BSEL === 1 &&
 			MOE === 1 &&
 			MWR === 0 &&
@@ -104,15 +104,15 @@ begin
 
     if(
             ALUFN === 6'b111111 &&
-			ASEL == 1 &&
-			BSEL == 1'bx &&
-			MOE == 1 &&
-			MWR == 0 &&
-			PCSEL == 3'b000 &&
-			RA2SEL == 1'bx &&
-			WASEL == 0 &&
-			WDSEL == 2'b10 &&
-			WERF == 1)
+			ASEL === 1 &&
+			BSEL === 1'bx &&
+			MOE === 1 &&
+			MWR === 0 &&
+			PCSEL === 3'b000 &&
+			RA2SEL === 1'bx &&
+			WASEL === 0 &&
+			WDSEL === 2'b10 &&
+			WERF === 1)
 
         $display("Case 4: PASS ");
     else
@@ -123,16 +123,16 @@ begin
 	#(period)
 
     if(
-            ALUFN == 6'b100000 &&
-			ASEL == 0 &&
-			BSEL == 1 &&
-			MOE == 0 &&
-			MWR == 1 &&
-			PCSEL == 3'b000 &&
-			RA2SEL == 1 &&
-			WASEL == 1'bx &&
-			WDSEL == 2'bxx &&
-			WERF == 0)
+            ALUFN === 6'b100000 &&
+			ASEL === 0 &&
+			BSEL === 1 &&
+			MOE === 0 &&
+			MWR === 1 &&
+			PCSEL === 3'b000 &&
+			RA2SEL === 1 &&
+			WASEL === 1'bx &&
+			WDSEL === 2'bxx &&
+			WERF === 0)
 
         $display("Case 5: PASS ");
     else
@@ -143,16 +143,16 @@ begin
     #(period)
 
 	if(
-            ALUFN == 6'bxxxxxx &&
-			ASEL == 1'bx &&
-			BSEL == 1'bx &&
-			MOE == 1'bx &&
-			MWR == 0 &&
-			PCSEL == 3'b010 &&
-			RA2SEL == 1'bx &&
-			WASEL == 0 &&
-			WDSEL == 2'b00 &&
-			WERF == 1)
+            ALUFN === 6'bxxxxxx &&
+			ASEL === 1'bx &&
+			BSEL === 1'bx &&
+			MOE === 1'bx &&
+			MWR === 0 &&
+			PCSEL === 3'b010 &&
+			RA2SEL === 1'bx &&
+			WASEL === 0 &&
+			WDSEL === 2'b00 &&
+			WERF === 1)
 
         $display("Case 6: PASS ");
     else
@@ -163,67 +163,47 @@ begin
     #(period)
 	
 	if(
-            ALUFN == 6'bxxxxxx &&
-			ASEL == 1'bx &&
-			BSEL == 1'bx &&
-			MOE == 1'bx &&
-			MWR == 0 &&
-			PCSEL == Z ? 3'b001 : 3'b000 &&
-			RA2SEL == 1'bx &&
-			WASEL == 0 &&
-			WDSEL == 2'b00 &&
-			WERF == 1)
+            ALUFN === 6'bxxxxxx &&
+			ASEL === 1'bx &&
+			BSEL === 1'bx &&
+			MOE === 1'bx &&
+			MWR === 0 &&
+			PCSEL == (Z ? 3'b001 : 3'b000) &&
+			RA2SEL === 1'bx &&
+			WASEL === 0 &&
+			WDSEL === 2'b00 &&
+			WERF === 1)
 
         $display("Case 7: PASS ");
     else
         $display("Case 7(BEQ): FAIL ");    
 
     //Testing BNE        
-	instruction[31:26] = 6'b011001;
+	instruction[31:26] = 6'b011101;
     #(period)
 
 	if(
-            ALUFN == 6'bxxxxxx &&
-			ASEL == 1'bx &&
-			BSEL == 1'bx &&
-			MOE == 1'bx &&
-			MWR == 0 &&
-			PCSEL == Z ? 3'b000 : 3'b001 &&
-			RA2SEL == 1'bx &&
-			WASEL == 0 &&
-			WDSEL == 2'b00 &&
-			WERF == 1)
+            ALUFN === 6'bxxxxxx &&
+			ASEL === 1'bx &&
+			BSEL === 1'bx &&
+			MOE === 1'bx &&
+			MWR === 0 &&
+			PCSEL === (Z ? 3'b000 :3'b001) &&
+			RA2SEL === 1'bx &&
+			WASEL === 0 &&
+			WDSEL === 2'b00 &&
+			WERF === 1)
 
         $display("Case 8: PASS ");
     else
         $display("Case 8(BNE): FAIL ");    
 
-    //Testing ILLOP        
-	instruction[31:26] = 6'b011101;
-    #(period)
-
-	if(
-            ALUFN == 6'bxxxxxx &&
-			ASEL == 1'bx &&
-			BSEL == 1'bx &&
-			MOE == 1'bx &&
-			MWR == 0 &&
-			PCSEL == 3'b011 &&
-			RA2SEL == 1'bx &&
-			WASEL == 1 &&
-			WDSEL == 2'b00 &&
-			WERF == 1)
-
-        $display("Case 8: PASS ");
-    else
-        $display("Case 8(BNE): FAIL "); 
-
 //IRQ Testing
 	IRQ = 1;
 	#(period)
 
-    if(     ALUFN == 6'bxxxxxx &&
-            ASEL == 1'bx &&
+    if(     ALUFN === 6'bxxxxxx &&
+            ASEL === 1'bx &&
 			BSEL === 1'bx &&
 			MOE === 1'bx &&
 			MWR === 0 &&
@@ -241,8 +221,8 @@ begin
 	RESET = 1;
 	#(period)
 
-    if(     ALUFN == 6'bxxxxxx &&
-            ASEL == 1'bx &&
+    if(     ALUFN === 6'bxxxxxx &&
+            ASEL === 1'bx &&
 			BSEL === 1'bx &&
 			MOE === 1'bx &&
 			MWR === 0 &&
