@@ -38,8 +38,8 @@ begin
 //Instruction Testing
 
     //Testing OP
-    #10 instruction[31:30] = 2'b10;
-    #(5)
+    instruction[31:30] = 2'b10;
+    #(10)
     
     if(     ALUFN == instruction[31:26] &&
             ASEL == 0 &&
@@ -57,7 +57,8 @@ begin
         $display("Case 1(op): FAIL ");
 
     //Testing OPC    
-    #10 instruction[31:30] = 2'b11;
+	instruction[31:30] = 2'b11;
+	#(10)
 
     if(     ALUFN == instruction[31:26] &&
             ASEL === 0 &&
@@ -75,7 +76,8 @@ begin
         $display("Case 2(opc): FAIL ");
 
     //Testing LD
-    #10  instruction[31:26] = 6'b011000;
+	instruction[31:26] = 6'b011000;
+	#(10)
 
     if(
             ALUFN == 6'b100000 &&
@@ -94,8 +96,9 @@ begin
         $display("Case 3(LD): FAIL ");
 
     //Testing LDR
-    #10  instruction[31:26] = 6'b011111;
-    
+	instruction[31:26] = 6'b011111;
+	#(10)
+
     if(
             ALUFN === 6'b111111 &&
 			ASEL == 1 &&
@@ -113,7 +116,9 @@ begin
         $display("Case 4(LDR): FAIL ");
 
     //Testing ST
-    #10  instruction[31:26] = 6'b011001;
+	instruction[31:26] = 6'b011001;
+	#(10)
+
     if(
             ALUFN == 6'b100000 &&
 			ASEL == 0 &&
@@ -131,8 +136,10 @@ begin
         $display("Case 5(ST): FAIL ");
 
     //Testing JMP
-    #10  instruction[31:26] = 6'b011011;
-    if(
+	instruction[31:26] = 6'b011011;
+    #(10)
+
+	if(
             ALUFN == 6'bxxxxxx &&
 			ASEL == 1'bx &&
 			BSEL == 1'bx &&
@@ -149,8 +156,10 @@ begin
         $display("Case 6(JMP): FAIL ");
 
     //Testing BEQ        
-    #10  instruction[31:26] = 6'b011100;
-    if(
+	instruction[31:26] = 6'b011100;
+    #(10)
+	
+	if(
             ALUFN == 6'bxxxxxx &&
 			ASEL == 1'bx &&
 			BSEL == 1'bx &&
@@ -167,14 +176,16 @@ begin
         $display("Case 7(BEQ): FAIL ");    
 
     //Testing BNE        
-    #10  instruction[31:26] = 6'b011001;
-    if(
+	instruction[31:26] = 6'b011001;
+    #(10)
+
+	if(
             ALUFN == 6'bxxxxxx &&
 			ASEL == 1'bx &&
 			BSEL == 1'bx &&
 			MOE == 1'bx &&
 			MWR == 0 &&
-			PCSEL == Z ? 3'b001 : 3'b000 &&
+			PCSEL == Z ? 3'b000 : 3'b001 &&
 			RA2SEL == 1'bx &&
 			WASEL == 0 &&
 			WDSEL == 2'b00 &&
@@ -185,8 +196,10 @@ begin
         $display("Case 8(BNE): FAIL ");    
 
     //Testing ILLOP        
-    #10  instruction[31:26] = 6'b011101;
-    if(
+	instruction[31:26] = 6'b011101;
+    #(10)
+
+	if(
             ALUFN == 6'bxxxxxx &&
 			ASEL == 1'bx &&
 			BSEL == 1'bx &&
@@ -203,7 +216,8 @@ begin
         $display("Case 8(BNE): FAIL "); 
 
 //IRQ Testing
-    #10 IRQ = 1;
+	IRQ = 1;
+	#(10)
 
     if(     ALUFN == 6'bxxxxxx &&
             ASEL == 1'bx &&
@@ -221,7 +235,8 @@ begin
         $display("Case 9(IRQ): FAIL ");
 
 //RESET Testing
-    #10 RESET = 1;
+	RESET = 1;
+	#(10)
 
     if(     ALUFN == 6'bxxxxxx &&
             ASEL == 1'bx &&
