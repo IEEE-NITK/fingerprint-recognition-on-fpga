@@ -14,38 +14,8 @@ module CU (
 	output reg [1:0] WDSEL,
 	output reg WERF);
 
-always @(instruction)
+always @(instruction,IRQ,RESET,Z)
  begin
-	// IRQ
-	if (IRQ == 1)
-		begin
-			ALUFN <= 6'bxxxxxx;
-			ASEL <= 1'bx;
-			BSEL <= 1'bx;
-			MOE <= 1'bx;
-			MWR <= 0;
-			PCSEL <= 3'b100;
-			RA2SEL <= 1'bx;
-			WASEL <= 1;
-			WDSEL <= 2'b00;
-			WERF <= 1;
-		end
-
-	// RESET
-	if (RESET == 1)
-		begin
-			ALUFN <= 6'bxxxxxx;
-			ASEL <= 1'bx;
-			BSEL <= 1'bx;
-			MOE <= 1'bx;
-			MWR <= 0;
-			PCSEL <= 3'bxxx;
-			RA2SEL <= 1'bx;
-			WASEL <= 1'bx;
-			WDSEL <= 2'bxx;
-			WERF <= 1'bx;
-		end
-
 	case(instruction[31:26])
 		//op
 	 6'b10xxxx :
@@ -153,7 +123,7 @@ always @(instruction)
 		end
 
 		//BNE
-	 6'b011001 :
+	 6'b011101 :
 		begin
 			ALUFN <= 6'bxxxxxx;
 			ASEL <= 1'bx;
@@ -166,22 +136,51 @@ always @(instruction)
 			WDSEL <= 2'b00;
 			WERF <= 1;
 		end
-		
+		endcase
 		//ILLOP
-	 6'b011101 :
+//		begin
+//			ALUFN <= 6'bxxxxxx;
+//			ASEL <= 1'bx;
+//			BSEL <= 1'bx;
+//			MOE <= 1'bx;
+//			MWR <= 0;
+//			PCSEL <= 3'b011;
+//			RA2SEL <= 1'bx;
+//			WASEL <= 1;
+//			WDSEL <= 2'b00;
+//			WERF <= 1;
+//		end
+
+
+		// IRQ
+	if (IRQ == 1)
 		begin
 			ALUFN <= 6'bxxxxxx;
 			ASEL <= 1'bx;
 			BSEL <= 1'bx;
 			MOE <= 1'bx;
 			MWR <= 0;
-			PCSEL <= 3'b011;
+			PCSEL <= 3'b100;
 			RA2SEL <= 1'bx;
 			WASEL <= 1;
 			WDSEL <= 2'b00;
 			WERF <= 1;
 		end
-	endcase
+
+	// RESET
+	if (RESET == 1)
+		begin
+			ALUFN <= 6'bxxxxxx;
+			ASEL <= 1'bx;
+			BSEL <= 1'bx;
+			MOE <= 1'bx;
+			MWR <= 0;
+			PCSEL <= 3'bxxx;
+			RA2SEL <= 1'bx;
+			WASEL <= 1'bx;
+			WDSEL <= 2'bxx;
+			WERF <= 1'bx;
+		end
  end
 
 endmodule
