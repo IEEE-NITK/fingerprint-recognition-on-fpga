@@ -61,6 +61,7 @@ always @(instruction)
 			WDSEL <= 2'b01;
 			WERF <= 1;
 		end	
+
 		//opc
 	 6'b11xxxx :
 		begin
@@ -75,6 +76,7 @@ always @(instruction)
 			WDSEL <= 2'b01;
 			WERF <= 1;
 		end
+
 		//LD
 	 6'b011000 :
 		begin
@@ -89,6 +91,7 @@ always @(instruction)
 			WDSEL <= 2'b10;
 			WERF <= 1;
 		end
+
 		//LDR
 	 6'b011111 :
 		begin
@@ -103,6 +106,7 @@ always @(instruction)
 			WDSEL <= 2'b10;
 			WERF <= 1;
 		end
+
 		//ST
 	 6'b011001 :
 		begin
@@ -117,6 +121,7 @@ always @(instruction)
 			WDSEL <= 2'bxx;
 			WERF <= 0;
 		end
+
 		//JMP
 	 6'b011011 :
 		begin
@@ -131,6 +136,7 @@ always @(instruction)
 			WDSEL <= 2'b00;
 			WERF <= 1;
 		end
+
 		//BEQ
 	 6'b011100 :
 		begin
@@ -145,6 +151,7 @@ always @(instruction)
 			WDSEL <= 2'b00;
 			WERF <= 1;
 		end
+
 		//BNE
 	 6'b011001 :
 		begin
@@ -159,6 +166,7 @@ always @(instruction)
 			WDSEL <= 2'b00;
 			WERF <= 1;
 		end
+		
 		//ILLOP
 	 6'b011101 :
 		begin
