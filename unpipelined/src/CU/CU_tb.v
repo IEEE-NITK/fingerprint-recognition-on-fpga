@@ -1,5 +1,6 @@
 `timescale 1ns/1ns
 
+
 module CU_tb;
 reg RESET;
 reg IRQ;
@@ -15,6 +16,8 @@ wire RA2SEL;
 wire WASEL;
 wire [1:0] WDSEL;
 wire WERF;
+
+localparam period = 20; 
 
 CU x(.RESET(RESET),
     .IRQ(IRQ),
@@ -39,7 +42,7 @@ begin
 
     //Testing OP
     instruction[31:30] = 2'b10;
-    #(10)
+    #(period)
     
     if(     ALUFN == instruction[31:26] &&
             ASEL == 0 &&
@@ -58,7 +61,7 @@ begin
 
     //Testing OPC    
 	instruction[31:30] = 2'b11;
-	#(10)
+	#(period)
 
     if(     ALUFN == instruction[31:26] &&
             ASEL === 0 &&
@@ -77,7 +80,7 @@ begin
 
     //Testing LD
 	instruction[31:26] = 6'b011000;
-	#(10)
+	#(period)
 
     if(
             ALUFN == 6'b100000 &&
@@ -97,7 +100,7 @@ begin
 
     //Testing LDR
 	instruction[31:26] = 6'b011111;
-	#(10)
+	#(period)
 
     if(
             ALUFN === 6'b111111 &&
@@ -117,7 +120,7 @@ begin
 
     //Testing ST
 	instruction[31:26] = 6'b011001;
-	#(10)
+	#(period)
 
     if(
             ALUFN == 6'b100000 &&
@@ -137,7 +140,7 @@ begin
 
     //Testing JMP
 	instruction[31:26] = 6'b011011;
-    #(10)
+    #(period)
 
 	if(
             ALUFN == 6'bxxxxxx &&
@@ -157,7 +160,7 @@ begin
 
     //Testing BEQ        
 	instruction[31:26] = 6'b011100;
-    #(10)
+    #(period)
 	
 	if(
             ALUFN == 6'bxxxxxx &&
@@ -177,7 +180,7 @@ begin
 
     //Testing BNE        
 	instruction[31:26] = 6'b011001;
-    #(10)
+    #(period)
 
 	if(
             ALUFN == 6'bxxxxxx &&
@@ -197,7 +200,7 @@ begin
 
     //Testing ILLOP        
 	instruction[31:26] = 6'b011101;
-    #(10)
+    #(period)
 
 	if(
             ALUFN == 6'bxxxxxx &&
@@ -217,7 +220,7 @@ begin
 
 //IRQ Testing
 	IRQ = 1;
-	#(10)
+	#(period)
 
     if(     ALUFN == 6'bxxxxxx &&
             ASEL == 1'bx &&
@@ -236,7 +239,7 @@ begin
 
 //RESET Testing
 	RESET = 1;
-	#(10)
+	#(period)
 
     if(     ALUFN == 6'bxxxxxx &&
             ASEL == 1'bx &&
