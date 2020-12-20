@@ -214,9 +214,9 @@ begin
 			WDSEL === 2'b00 &&
 			WERF === 1)
 
-        $display("Case 9: PASS ");
+        $display("Case 8: PASS ");
     else
-        $display("Case 9(ILLOP): FAIL ");
+        $display("Case 8(BNE): FAIL ");
 
 //IRQ Testing
 	IRQ = 1;
@@ -233,9 +233,9 @@ begin
 			WDSEL === 2'b00 &&
 			WERF === 1)
 
-        $display("Case 10: PASS ");
+        $display("Case 9: PASS ");
     else
-        $display("Case 10(IRQ): FAIL ");
+        $display("Case 9(IRQ): FAIL ");
 
 //RESET Testing
 	RESET = 1;
@@ -252,8 +252,8 @@ begin
 			WDSEL === 2'bxx &&
 			WERF === 1'bx)
 
-        $display("Case 11: PASS ");
+        $display("Case 10: PASS ");
     else
-        $display("Case 11(RESET): FAIL ");
+        $display("Case 10(RESET): FAIL ");
 end     
 endmodule

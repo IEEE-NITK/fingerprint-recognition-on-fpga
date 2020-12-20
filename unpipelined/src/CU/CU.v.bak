@@ -136,6 +136,7 @@ always @(instruction,IRQ,RESET,Z)
 			WDSEL <= 2'b00;
 			WERF <= 1;
 		end
+		endcase
 
 		//ILLOP
 	 default:
@@ -151,7 +152,7 @@ always @(instruction,IRQ,RESET,Z)
 			WDSEL <= 2'b00;
 			WERF <= 1;
 		end
-		endcase
+
 
 		// IRQ
 	if (IRQ == 1)
