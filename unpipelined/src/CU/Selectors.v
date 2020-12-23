@@ -66,15 +66,50 @@ endmodule
 
 module RESET_mux(
 	input RESET,
-	input [7:0] PCSEL_out,
-	input [7:0] reset,
+	input [7:0] PCSEL_OUT,
 	output reg [7:0] out);
 
  always @(RESET)
  begin
 	case(RESET)
-		1'b0 : out <= PCSEL_out;
-		1'b1 : out <= reset;
+		1'b0 : out <= PCSEL_OUT;
+		1'b1 : out <= 32'h80000000;
+	endcase
+ end
+
+endmodule
+
+module PCSEL_mux(
+	input [2:0] PCSEL,
+	input [31:0] JT,
+	input [31:0] PC4,
+	input [31:0] PC4SXT,
+	output reg [31:0] PCSEL_OUT);
+
+ always @(PCSEL)
+ begin
+	case(PCSEL)
+		3'b000 : PCSEL_OUT <= PC4;
+		3'b001 : PCSEL_OUT <= PC4SXT;
+		3'b010 : PCSEL_OUT <= JT;
+		3'b011 : PCSEL_OUT <= 32'h80000004;
+		3'b011 : PCSEL_OUT <= 32'h80000008;
+	endcase
+ end
+
+endmodule
+
+module WASELector(
+	input WASEL,
+	input [5:0] Rc,
+	input [5:0] XP,
+	output reg [5:0] WA);
+
+ always @(WASEL)
+ begin
+	case(WASEL)
+		1'b0 : WA <= Rc;
+		1'b1 : WA <= 6'b001111;
 	endcase
  end
 
