@@ -8,20 +8,15 @@
 // Instruction: 32-Bit output port.
 ////////////////////////////////////////////////////////////////////////////////
 
-module InstructionMemory(Address, Instruction); 
+module InstructionMemory( IA, ID, [7:0] mem[0:1024] ); 
 
-    input       [31:0]  Address;        // Input Address 
+    input [31:0]  IA;        // Input Address 
 
-    output   [31:0]  Instruction;    // Instruction at memory location Address
+    output   [31:0]  ID;    // Instruction at memory location Address
     
-    reg [7:0] mem[0:1024];
+    input [7:0] mem[0:1024]; //check what to do
 
-	initial
-	begin
-		$readmemh("code.txt",mem);
-	end
-
-	assign Instruction = mem[Address>>2];	
+    assign ID = mem[IA>>2];	
 	
 
 endmodule
