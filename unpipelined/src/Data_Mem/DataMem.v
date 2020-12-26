@@ -5,11 +5,11 @@ module Data_Memory(
  input [31:0]   Adr,
  
  // write port
- input [31:0]   WD,
- input WE,
- input OE,
+ input [31:0]   MWD,
+ input MWR,
+ input MOE,
  // read port
- output [31:0]   RD
+ output [31:0]   MRD
 );
 
 reg [31:0] memory [2^30-1:0]; 
@@ -18,9 +18,9 @@ reg [31:0] memory [2^30-1:0];
 wire [5:0] ram_addr=Adr[5:0];
 
  always @(posedge clk) begin
-  if (WE)
-   memory[ram_addr] <= WD;
+  if (MWR)
+   memory[ram_addr] <= MWD;
  end
- assign RD = (OE==1'b1) ? memory[ram_addr]: 32'd0; 
+ assign MRD = (MOE==1'b1) ? memory[ram_addr]: 32'd0; 
 
 endmodule
