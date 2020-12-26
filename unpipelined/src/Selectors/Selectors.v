@@ -3,14 +3,14 @@ module WDSELector(
 	input signed [31:0] PC4,
 	input signed [31:0] Y,
 	input signed [31:0] MRD,
-	output reg [31:0] Data);
+	output reg [31:0] WD);
 
  always @(WDSEL)
  begin
 	case(WDSEL)
-		2'b00 : Data <= PC4;
-		2'b01 : Data <= Y;
-		2'b10 : Data <= MRD;
+		2'b00 : WD <= PC4;
+		2'b01 : WD <= Y;
+		2'b10 : WD <= MRD;
 	endcase
  end
 
@@ -66,8 +66,8 @@ endmodule
 
 module RESET_mux(
 	input RESET,
-	input [7:0] PCSEL_OUT,
-	output reg [7:0] out);
+	input [31:0] PCSEL_OUT,
+	output reg [31:0] out);
 
  always @(RESET)
  begin
@@ -101,15 +101,14 @@ endmodule
 
 module WASELector(
 	input WASEL,
-	input [5:0] Rc,
-	input [5:0] XP,
-	output reg [5:0] WA);
+	input [4:0] Rc,
+	output reg [4:0] WA);
 
  always @(WASEL)
  begin
 	case(WASEL)
 		1'b0 : WA <= Rc;
-		1'b1 : WA <= 6'b001111;
+		1'b1 : WA <= 5'b11110;
 	endcase
  end
 
