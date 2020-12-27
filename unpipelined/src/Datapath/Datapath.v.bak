@@ -118,13 +118,14 @@ module Datapath_Unit(
  );
 
  // calculating Z
- wire z = 0;
+ wire z;
+ assign z = 0;
  genvar i;
  generate
   for(i=0;i<32;i=i+1)
-	z = (z | RD1[i]);
+	assign z = (z | RD1[i]);
  endgenerate
- z = ~z;
+ assign z = ~z;
 
  // sign extension
  assign SXTC = {{16{instruction[15]}},instruction[15:0]};  
