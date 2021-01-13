@@ -14,7 +14,7 @@ module Datapath_Unit(
  wire MOE;
  wire MWR;
  wire RA2SEL;
- wire [1:0] WDSEl
+ wire [1:0] WDSEL;
  reg  [31:0] pc_current;
  wire [31:0] pc_next,PC4;
  wire [31:0] instruction;

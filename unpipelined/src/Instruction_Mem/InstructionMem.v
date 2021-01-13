@@ -13,9 +13,8 @@ module InstructionMemory(
 	output  [31:0]  ID    // Instruction at memory location Address
 	); 
     
-    reg [7:0] mem[0:1024]; //check what to do
+    reg [31:0] mem[0:1024]; //check what to do
 
     assign ID = mem[IA>>2];	
-	
 
 endmodule
