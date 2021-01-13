@@ -3,17 +3,18 @@
 // Verilog code for RISC Processor 
 // Verilog code for Data Path of the processor
 
-//to add: Implementation of Z and IRQ
+//to add: Implementation of IRQ
 module Datapath_Unit(
  input clk,
- input MOE,
- input MWR,
- input RA2SEL,
- input [1:0] WDSEL,
+ input IRQ,
  input RESET,
  output[5:0] ALUFN
 );
 
+ wire MOE;
+ wire MWR;
+ wire RA2SEL;
+ wire [1:0] WDSEl
  reg  [31:0] pc_current;
  wire [31:0] pc_next,PC4;
  wire [31:0] instruction;
@@ -65,6 +66,7 @@ module Datapath_Unit(
      .mem(mem) //import mem from a file using readmemh
      );
  
+
 //control unit
  CU controlunit(
     .RESET(RESET),
@@ -118,7 +120,7 @@ module Datapath_Unit(
  );
 
  // calculating Z
- assign Z = 0;
+ //check if we need to assign value to Z bfr control unit
  genvar i;
  generate
   for(i=0;i<32;i=i+1)
