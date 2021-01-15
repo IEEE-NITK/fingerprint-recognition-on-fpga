@@ -93,7 +93,7 @@ module PCSEL_mux(
 		3'b001 : PCSEL_OUT <= PC4SXT;
 		3'b010 : PCSEL_OUT <= JT;
 		3'b011 : PCSEL_OUT <= 32'h80000004;
-		3'b100 : PCSEL_OUT <= 32'h80000008;
+		3'b011 : PCSEL_OUT <= 32'h80000008;
 	endcase
  end
 
