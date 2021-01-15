@@ -1,7 +1,7 @@
 // Verilog code for data Memory
 module Data_Memory(
 	input clk,
-	input [31:0]   Adr, // address input, shared by read and write port 
+	input [31:0]   Adr,	// address input, shared by read and write port 
 
 	// write port
 	input [31:0]   MWD,
