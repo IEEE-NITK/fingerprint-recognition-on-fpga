@@ -1,6 +1,9 @@
+`timescale 1ns / 1ps
+
+// Control Unit
 module CU (
+    input clk,
 	input RESET,
-	input IRQ,
 	input Z,
 	input [31:0] instruction,
 	output reg [5:0] ALUFN,
@@ -14,9 +17,9 @@ module CU (
 	output reg [1:0] WDSEL,
 	output reg WERF);
 
-always @(instruction,IRQ,RESET,Z)
+always @(*)
  begin
-	case(instruction[31:26])
+	casex(instruction[31:26])
 		//op
 	 6'b10xxxx :
 		begin
@@ -153,21 +156,6 @@ always @(instruction,IRQ,RESET,Z)
 		end
 		endcase
 
-		// IRQ
-	if (IRQ == 1)
-		begin
-			ALUFN <= 6'bxxxxxx;
-			ASEL <= 1'bx;
-			BSEL <= 1'bx;
-			MOE <= 1'bx;
-			MWR <= 0;
-			PCSEL <= 3'b100;
-			RA2SEL <= 1'bx;
-			WASEL <= 1;
-			WDSEL <= 2'b00;
-			WERF <= 1;
-		end
-
 	// RESET
 	if (RESET == 1)
 		begin
@@ -183,5 +171,4 @@ always @(instruction,IRQ,RESET,Z)
 			WERF <= 1'bx;
 		end
  end
-
 endmodule
