@@ -90,10 +90,10 @@ def assemble(assembly_filename,memory_filename,opcode,register):
         code = file_s.readline()
 
     file_mem = open('memory_file/' + memory_filename, 'a')
-
+    k=0
     mem_instruction = list()
     for i in range(len(instructions)):
-
+        
         ignore = ['']
         if instructions[i] == ignore: #ignoring empty lines
             continue
@@ -145,7 +145,8 @@ def assemble(assembly_filename,memory_filename,opcode,register):
         """
         mem_instruction.append(mem_data)
         file_mem.write(mem_data)
-        print("Instruction",i+1,"does the operation", Operation,"with source register/s",R_source)
+        k+=1
+        print("Instruction",k,"does the operation", Operation,"with source register/s",R_source)
 
         if(Constant is None):
             print(" and",R_source2,"and the output is stored in the destination register",R_dest,".")
