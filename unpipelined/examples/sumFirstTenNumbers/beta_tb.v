@@ -29,7 +29,7 @@ module beta_tb;
         #800 $display($time, " Register%1d: %d", 0, uut.regfile.reg_file[0]);
         $display($time, " Register%1d: %d", 2, uut.regfile.reg_file[2]);
         $display($time, " Memory%1d: %d", 0, uut.dm.memory[0]);
-        $finish;
+        //$finish;
     end
     
     initial $monitor($time, " Current PC:%1d", uut.PC);

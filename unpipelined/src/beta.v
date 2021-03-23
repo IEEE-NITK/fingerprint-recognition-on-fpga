@@ -82,7 +82,7 @@ module beta(
     
     // instantiations
    
-    reg32file regfile(.clk(clk),
+    regfile regfile(.clk(clk),
                   .WERF(WERF),
                   .RA1(RA1),
                   .RA2(RA2),
