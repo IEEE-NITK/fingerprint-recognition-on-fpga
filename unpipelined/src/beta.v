@@ -51,14 +51,14 @@ module beta(
     //encrypted data memory
     wire [127:0] e_MRD;
     wire [127:0] e_RD2;
+    wire [127:0] temp_RD2;
    
 	// instruction memory 
 	wire [31:0] IA;
 	wire [31:0] ID;
 	
 	//encrypted instruction memory
-	//wire [31:0] e_IA;
-	//wire [31:0] e_ID;
+	wire [127:0] e_ID;
 	
 	// jump 
 	wire [31:0] JT;
@@ -116,9 +116,8 @@ module beta(
             .B(B),
             .Y(Y));
            
-    wire [127:0] temp_RD2;
-    assign temp_RD2[127:32]= 96'd0; 
     assign temp_RD2[31:0] = RD2;
+    assign temp_RD2[127:32]= 96'd0; 
     encrypt(.message(temp_RD2),
             .encrypted_message(e_RD2));
     
