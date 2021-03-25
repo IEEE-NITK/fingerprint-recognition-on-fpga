@@ -103,7 +103,7 @@ def assemble(assembly_filename,memory_filename,opcode,register):
     
         Operation = instructions[i][0].upper() #Operation name
         R_dest    = instructions[i][1]         #Destination register
-        R_source  = None         #Source register
+        R_source  = None                       #Source register
         R_source2 = None                       #Source register 2
         Constant  = None                       #16 bit Constant
 
@@ -134,12 +134,14 @@ def assemble(assembly_filename,memory_filename,opcode,register):
         #generating binary instructions or machine code
         
         if R_source2 is not None:
-            mem_data = opcode[Operation] + register[R_source] + register[R_source2] + '00000000000' 
+            mem_data = opcode[Operation] + register[R_dest] + register[R_source] + register[R_source2] + '00000000000' 
             #Appending 11 zeroes to make our instruction reach the fixed size of 32 bit
         else :
             sxt = convert_bin_n(int(Constant),16) #Sign-extending our constant to reach 16 bits
-            mem_data = opcode[Operation] + register[R_source] + sxt
+            mem_data = opcode[Operation] + register[R_dest] + register[R_source] + sxt
 
+        mem_data = encrypt(mem_data)
+        
         mem_data = mem_data + '\n' 
         """Note that each line of the memory file contains one instruction
             Hence, each iteration generates a 32 bit machine code of 1 instruction.
