@@ -140,6 +140,8 @@ def assemble(assembly_filename,memory_filename,opcode,register):
             sxt = convert_bin_n(int(Constant),16) #Sign-extending our constant to reach 16 bits
             mem_data = opcode[Operation] + register[R_source] + sxt
 
+        print(mem_data)
+        mem_data = encrypt(mem_data)
         mem_data = mem_data + '\n' 
         """Note that each line of the memory file contains one instruction
             Hence, each iteration generates a 32 bit machine code of 1 instruction.
