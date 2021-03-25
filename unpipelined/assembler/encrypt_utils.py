@@ -15,5 +15,7 @@ def encrypt(instruction):
         d += chr(i)
     for i in b:
         d += chr(i)
-    enc = cipher.encrypt(d)   
-    return enc 
+    enc = cipher.encrypt(d)
+    bytes_as_bits = ''.join(format(ord(chr(byte)), '08b') for byte in enc)
+   
+    return bytes_as_bits
