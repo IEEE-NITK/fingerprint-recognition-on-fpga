@@ -20,7 +20,7 @@ module beta_tb;
         for(i=0;i<10;i=i+1) begin
             uut.dm.memory[i] = 10*i; 
         end
-        $readmemb("sumFirstTenNumbers.mem", uut.im.mem);
+        $readmemb("final_enc.mem", uut.im.mem);
         
         $display($time, " Register%1d: %d", 0, uut.regfile.reg_file[0]);
         $display($time, " Register%1d: %d", 2, uut.regfile.reg_file[2]);
