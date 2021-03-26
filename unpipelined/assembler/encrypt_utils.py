@@ -11,9 +11,9 @@ def encrypt(instruction):
 
     k=bitarray(instruction)
     b=k.tobytes()
-    pad = 12*[0x00]
-    pad = bytes(pad)
-    s=pad+b
+    z=(16-len(b))*[0x00]
+    z=bytes(z)
+    s=z+b
     enc = cipher.encrypt(s)
     bytes_as_bits = ''.join(format(ord(chr(byte)), '08b') for byte in enc)
    
