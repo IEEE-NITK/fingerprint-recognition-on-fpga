@@ -118,7 +118,7 @@ module beta(
            
     assign temp_RD2[31:0] = RD2;
     assign temp_RD2[127:32]= 96'd0; 
-    encrypt(.message(temp_RD2),
+    encrypt e1(.message(temp_RD2),
             .encrypted_message(e_RD2));
     
     Data_Memory dm(.clk(clk),
@@ -128,7 +128,7 @@ module beta(
                    .MOE(MOE),
                    .MRD(e_MRD));
                    
-   decrypt(.encrypted_message(e_MRD),
+   decrypt d1(.encrypted_message(e_MRD),
            .cut_decrypted_message(MRD));
      
                  
@@ -141,7 +141,7 @@ module beta(
     InstructionMemory im(.IA(IA),
                          .ID(e_ID));
     
-    decrypt(.encrypted_message(e_ID),
+    decrypt d2(.encrypted_message(e_ID),
             .cut_decrypted_message(ID));     
                                         
     RA2SELector ra2sel_mux(.RA2SEL(RA2SEL),
