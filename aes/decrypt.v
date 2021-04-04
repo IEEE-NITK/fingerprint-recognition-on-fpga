@@ -2,9 +2,10 @@
 
 module decrypt(
     input [127:0] encrypted_message,
-    output [127:0] decrypted_message
+    output [31:0] cut_decrypted_message
     );
     
+    wire [127:0] decrypted_message;
     wire [3:0] round;
     wire [127:0] tmp [9:0];
     wire [127:0] tmp1;
@@ -25,5 +26,7 @@ module decrypt(
     roundDecrypt r8(.in(tmp[8]), .round(1), .out(tmp[9]));
     
     addRoundKey a2(.in(tmp[9]), .round(0), .out(decrypted_message));
+    
+    assign cut_decrypted_message = decrypted_message[31:0];
     
 endmodule
