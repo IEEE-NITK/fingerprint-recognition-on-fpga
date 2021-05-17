@@ -49,9 +49,9 @@ module beta(
     // data memory
     wire [31:0] MRD;
     //encrypted data memory
-    wire [127:0] e_MRD;
-    wire [127:0] e_RD2;
-    wire [127:0] temp_RD2;
+//    wire [127:0] e_MRD;
+//    wire [127:0] e_RD2;
+//    wire [127:0] temp_RD2;
    
 	// instruction memory 
 	wire [31:0] IA;
@@ -116,20 +116,20 @@ module beta(
             .B(B),
             .Y(Y));
            
-    assign temp_RD2[31:0] = RD2;
-    assign temp_RD2[127:32]= 96'd0; 
-    encrypt e1(.message(temp_RD2),
-            .encrypted_message(e_RD2));
+//    assign temp_RD2[31:0] = RD2;
+//    assign temp_RD2[127:32]= 96'd0; 
+//    encrypt e1(.message(temp_RD2),
+//            .encrypted_message(e_RD2));
     
     Data_Memory dm(.clk(clk),
                    .Adr(Y),
-                   .MWD(e_RD2),
+                   .MWD(RD2),
                    .MWR(MWR),
                    .MOE(MOE),
-                   .MRD(e_MRD));
+                   .MRD(MRD));
                    
-   decrypt d1(.encrypted_message(e_MRD),
-           .cut_decrypted_message(MRD));
+//   decrypt d1(.encrypted_message(e_MRD),
+//           .cut_decrypted_message(MRD));
      
                  
     WDSELector wdsel_mux(.WDSEL(WDSEL),
@@ -139,10 +139,10 @@ module beta(
                          .WD(WDSEL_OUT));
                          
     InstructionMemory im(.IA(IA),
-                         .ID(e_ID));
+                         .ID(ID));
     
-    decrypt d2(.encrypted_message(e_ID),
-            .cut_decrypted_message(ID));     
+//    decrypt d2(.encrypted_message(e_ID),
+//            .cut_decrypted_message(ID));     
                                         
     RA2SELector ra2sel_mux(.RA2SEL(RA2SEL),
                            .Rb(Rb),

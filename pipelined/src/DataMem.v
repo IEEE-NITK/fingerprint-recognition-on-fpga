@@ -4,13 +4,13 @@
 module Data_Memory(
  input clk,
  input [31:0]   Adr,
- input [127:0]   MWD,
+ input [31:0]   MWD,
  input MWR,
  input MOE,
- output [127:0]   MRD
+ output [31:0]   MRD
 );
 
-reg [127:0] memory [1023:0]; 
+reg [31:0] memory [1023:0]; 
 
 wire [5:0] ram_addr=Adr[5:0];
 
