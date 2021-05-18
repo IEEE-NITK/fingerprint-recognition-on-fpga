@@ -3,23 +3,38 @@
 // The instruction fetch to Instruction Decode pipeline stage
 module IF_ID(
         input [31:0] IF_PC,
-        input [31:0] IF_ID,
+        input IF_RA2SEL,
+        input IF_ASEL,
+        input IF_BSEL,
+        input [31:0] IF_SXTC,
         output reg [31:0] ID_PC,
-        output reg [31:0] ID_ID
+        output reg ID_RA2SEL,
+        output reg ID_ASEL,
+        output reg ID_BSEL,
+        output reg [31:0] ID_SXTC
     );
     
     reg [31:0] PC;
-    reg [31:0] ID;
+    reg RA2SEL;
+    reg ASEL;
+    reg BSEL;
+    reg [31:0] SXTC;
     
     always @(*)
     begin
         //data in pipeline register
         PC <= IF_PC;
-        ID <= IF_ID;
+        RA2SEL <= IF_RA2SEL;
+        ASEL <= IF_ASEL;
+        BSEL <= IF_BSEL;
+        SXTC <= IF_SXTC;
         
         //data sent
         ID_PC <= PC;
-        ID_ID <= ID;
+        ID_RA2SEL <= RA2SEL;
+        ID_ASEL <= ASEL;
+        ID_BSEL <= BSEL;
+        ID_SXTC <= SXTC;
     end
     
 endmodule
