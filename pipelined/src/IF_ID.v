@@ -7,11 +7,13 @@ module IF_ID(
         input IF_ASEL,
         input IF_BSEL,
         input [31:0] IF_SXTC,
+        input [31:0] IF_ID,
         output reg [31:0] ID_PC,
         output reg ID_RA2SEL,
         output reg ID_ASEL,
         output reg ID_BSEL,
-        output reg [31:0] ID_SXTC
+        output reg [31:0] ID_SXTC,
+        output reg [31:0] ID_ID
     );
     
     reg [31:0] PC;
@@ -19,6 +21,7 @@ module IF_ID(
     reg ASEL;
     reg BSEL;
     reg [31:0] SXTC;
+    reg [31:0] ID;
     
     always @(*)
     begin
@@ -28,6 +31,7 @@ module IF_ID(
         ASEL <= IF_ASEL;
         BSEL <= IF_BSEL;
         SXTC <= IF_SXTC;
+        ID <= IF_ID;
         
         //data sent
         ID_PC <= PC;
@@ -35,6 +39,7 @@ module IF_ID(
         ID_ASEL <= ASEL;
         ID_BSEL <= BSEL;
         ID_SXTC <= SXTC;
+        ID_ID <= ID;
     end
     
 endmodule
