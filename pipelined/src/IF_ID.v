@@ -2,6 +2,7 @@
 
 // The instruction fetch to Instruction Decode pipeline stage
 module IF_ID(
+        input stall,
         input [31:0] IF_PC,
         input IF_RA2SEL,
         input IF_ASEL,
@@ -25,13 +26,17 @@ module IF_ID(
     
     always @(*)
     begin
-        //data in pipeline register
-        PC <= IF_PC;
-        RA2SEL <= IF_RA2SEL;
-        ASEL <= IF_ASEL;
-        BSEL <= IF_BSEL;
-        SXTC <= IF_SXTC;
-        ID <= IF_ID;
+        
+        if (stall == 0)
+        begin
+            //data in pipeline register
+            PC <= IF_PC;
+            RA2SEL <= IF_RA2SEL;
+            ASEL <= IF_ASEL;
+            BSEL <= IF_BSEL;
+            SXTC <= IF_SXTC;
+            ID <= IF_ID;
+        end
         
         //data sent
         ID_PC <= PC;
